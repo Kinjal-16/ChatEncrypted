@@ -45,19 +45,19 @@ public class Server
             catch (IOException e) {
                 e.printStackTrace();
             }
-            for(String str: map.keySet())
+            for(String str: map.keySet())//Sending the public keys of all other users
             {
                 String d=str+":"+map.get(str);
                 out.writeUTF(d);
             }
             out.writeUTF("done");
-            for(ClientHandler mc:set)
+            for(ClientHandler mc:set)//Send the public key of the new user
             {
                 mc.out.writeUTF("#keys");
                 String msg="client"+i+":"+clientA;
                 mc.out.writeUTF(msg);
             }
-            map.put("client"+i,clientA);
+            map.put("client"+i,clientA); // Adding the key to the server's key table
             System.out.println(map);
             // Create a new handler object for handling this request.
             ClientHandler client = new ClientHandler(s,"client"+i, in, out);

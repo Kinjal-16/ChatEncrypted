@@ -36,7 +36,7 @@ public class Client extends Thread {
                 e.printStackTrace();
             }
 
-            if(msg.equals("#keys"))
+            if(msg.equals("#keys")) // Getting the public key of the new user
             {
                 String str="";
                 try {
@@ -56,11 +56,8 @@ public class Client extends Thread {
             }
             else
             {
-
                 String temp[]=msg.split(":");
-
-
-                        System.out.println(temp[0]+":"+decrypt(temp[1],map.get(temp[0])));
+                System.out.println(temp[0]+":"+decrypt(temp[1],map.get(temp[0])));
 
                 }
 
@@ -132,7 +129,7 @@ public class Client extends Thread {
         out.writeUTF(Astr); // Sending A
 
         String str=in.readUTF();
-
+        // Getting the public keys of existing users
         while(!str.equals("done")) {
             String strtemp[]=str.split(":");
             serverB = Double.parseDouble(strtemp[1]);
